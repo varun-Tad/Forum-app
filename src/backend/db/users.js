@@ -10,7 +10,7 @@ export const users = [
   {
     _id: uuid(),
     firstName: "Adarsh",
-    lastName: "Balika",
+    lastName: "B",
     username: "adarshbalika",
     password: "adarshBalika123",
     account: "@adarshB",
@@ -22,7 +22,7 @@ export const users = [
   {
     _id: uuid(),
     firstName: "Shubham",
-    lastName: "Soni",
+    lastName: "S",
     username: "shubhamsoni",
     password: "shubhamSoni123",
     account: "@shubhamS",
@@ -46,7 +46,7 @@ export const users = [
   {
     _id: uuid(),
     firstName: "Cristiano",
-    lastName: "Ronaldo",
+    lastName: "R",
     username: "cr7ronaldo",
     password: "cristianoronaldo123",
     account: "@cr7",

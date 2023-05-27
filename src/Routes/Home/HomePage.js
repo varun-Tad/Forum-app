@@ -1,18 +1,29 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import "./HomePage.css";
 import axios from "axios";
+import { QUESTIONS_API, USERS_API } from "../../constants";
+import { useHome } from "../../Context/HomeContext";
+import QuestionCard from "../../components/Questioncard/QuestionCard";
 
 const HomePage = () => {
+  const { questions, setQuestions } = useHome();
+  const [loading, setLoading] = useState(false);
+  const [users, setUsers] = useState([]);
+
   useEffect(() => {
     (async () => {
-      const { data } = await axios.get("/api/questions");
+      setLoading(true);
+      const resp = await axios.get(QUESTIONS_API);
+      setQuestions(resp.data.questions);
+      setLoading(false);
     })();
   }, []);
 
   useEffect(() => {
     (async () => {
-      const { data } = await axios.get("/api/users");
-      console.log(data);
+      const { data } = await axios.get(USERS_API);
+      //   console.log(data.users);
+      setUsers(data.users);
     })();
   }, []);
 
@@ -127,12 +138,45 @@ const HomePage = () => {
               </p>
             </div>
           </div>
+
+          <div className="cards">
+            {loading ||
+              questions.map((question) => (
+                <QuestionCard questionsData={question} />
+              ))}
+          </div>
         </div>
       </aside>
 
       <aside className="rightSide-Home">
         <div className="right-side">
-          <div className="Follow-options"></div>
+          <div className="Follow-options">
+            <div className="follow-heading">
+              <h3>Who to follow </h3>
+            </div>
+            <div className="users">
+              {users.map((user) => (
+                <div
+                  className="each-user"
+                  key={user.id}
+                  onClick={(e) => console.log(e.target, user.firstName)}
+                >
+                  <img
+                    className="profile-pic"
+                    src={user.image}
+                    alt="profile-pic"
+                  />
+                  <div className="names">
+                    <p>
+                      {user.firstName} {user.lastName}
+                    </p>
+                    <small>{user.account}</small>
+                  </div>
+                  <button className="follow-btn">Follow</button>
+                </div>
+              ))}
+            </div>
+          </div>
         </div>
       </aside>
     </section>

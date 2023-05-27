@@ -8,6 +8,11 @@
   padding-right: 2rem;
   border-bottom-left-radius: 1rem;
   border-bottom-right-radius: 1rem;
+  position: fixed;
+  width: 95.5%;
+  background: #ffffff;
+  top: 0;
+  right: 0;
 }
 
 .navs {
